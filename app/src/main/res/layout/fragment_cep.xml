@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edt_cep_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Digite o CEP"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentTop="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_buscar_cep"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Buscar CEP"
+            android:layout_below="@id/edt_cep_input"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_limpar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Limpar"
+            android:layout_below="@id/btn_buscar_cep"
+            android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/txt_cep_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resultado da Busca"
+        android:textSize="18sp"
+        android:layout_below="@id/btn_limpar"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
