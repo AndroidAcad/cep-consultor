@@ -106,7 +106,7 @@ public class FragmentRua extends Fragment {
 
             @Override
             public void onFailure(Call<List<CepResponse>> call, Throwable t) {
-                Toast.makeText(getContext(), "Erro na busca", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Erro na busca. Verifique se há conexão com a internet!", Toast.LENGTH_LONG).show();
             }
         });
     }

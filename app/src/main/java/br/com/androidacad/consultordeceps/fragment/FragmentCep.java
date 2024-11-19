@@ -57,7 +57,7 @@ public class FragmentCep extends Fragment {
             String cep = edtCepInput.getText().toString().trim();
 
             if (cep.isEmpty()) {
-                Toast.makeText(getActivity(), "Por favor, insira um CEP", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Por favor, insira um CEP.", Toast.LENGTH_SHORT).show();
             } else {
                 // Fazer a requisição à API
                 Call<CepResponse> call = cepApi.getCep(cep);
@@ -65,13 +65,14 @@ public class FragmentCep extends Fragment {
                     @Override
                     public void onResponse(Call<CepResponse> call, Response<CepResponse> response) {
                         if (!response.isSuccessful()) {
-                            txtCepResult.setText("Erro: " + response.code());
+                            txtCepResult.setText("Utilize formatos 99999-999 ou 99999999 sem espaço e apenas numeros. Exemplos de formatos inválido que não devem ser usados: \"950100100\" (9 dígitos), \"95010A10\" (alfanumérico), \"95010 10\" (espaço).");
+                            Toast.makeText(getActivity(), "Por favor, insira um CEP Válido!", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         // Obter a resposta e atualizar a interface
                         CepResponse cepResponse = response.body();
-                        if (cepResponse != null) {
+                        if (cepResponse != null && cepResponse.getLogradouro() != null) {
                             String resultado = "Logradouro: " + cepResponse.getLogradouro() + "\n" +
                                     "Bairro: " + cepResponse.getBairro() + "\n" +
                                     "Cidade: " + cepResponse.getLocalidade() + "\n" +
@@ -87,6 +88,7 @@ public class FragmentCep extends Fragment {
                     public void onFailure(Call<CepResponse> call, Throwable t) {
                         Log.e("FragmentCep", "Erro na busca do CEP: ", t);
                         txtCepResult.setText("Erro ao buscar o CEP.");
+                        Toast.makeText(getActivity(), "Erro ao buscar o CEP. Verifique se há conexão com a internet!", Toast.LENGTH_LONG).show();
                     }
                 });
             }
